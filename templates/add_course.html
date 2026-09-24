@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h1>Add Course</h1>
+	<div>
+		<form method="post" action="{%url 'student:add_course' %}">
+			{% csrf_token %}
+			<div>
+			<label>Enter student name</label>
+			 <input type="text" name="stud"> <!-- you have to gave values to name -->
+			<input type="submit" value="Add student">
+			</div>
+			<div>
+			<label>Enter course name</label>
+			 <input type="text" name="course"> <!-- you have to gave values to name -->
+			<input type="submit" value="Add course">
+			</div>
+		</form>
+	</div>
+</body>
+</html>
