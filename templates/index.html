@@ -1,31 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-</head>
-<body>
-	<nav>
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="{% url 'student:students' %}">All students</a></li>
-			<li><a href="{% url 'credentials:login' %}">Login</a></li>
-			<li><a href="{% url 'credentials:register' %}">Register</a></li>
-			
-		</ul>
-	</nav>
-	<button><a href="{% url 'credentials:logout' %}">Logout</a></button>
-	<h1>Welcome Developers</h1>
-	<section>
-		<h2>!!!!Courses we Provide!!!!</h2>
-		<div>
-			{% for i in all_course %}
-			<div>
-				{{i.course_name}}
-			</div>
-			{% endfor %}
-		</div>
-	</section>
-</body>
-</html>
+{% extends 'base.html' %} 
+{%block title%}Home {% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+
+    <h1>Welcome Developers</h1>
+
+    <section class="course-section">
+
+        <h2>Courses We Provide</h2>
+
+        <div class="course-list">
+
+            {% for i in all_course %}
+
+                <div class="course-card">
+                    {{ i.course_name }}
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</div>
+
+
+{% endblock %} 

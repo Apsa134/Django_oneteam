@@ -1,0 +1,30 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}{% endblock%}</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+	<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+		<li><a href="{% url 'student:add_course' %}">All Course</a></li>
+        <li><a href="{% url 'student:students' %}">All Students</a></li>
+        <li><a href="{% url 'credentials:login' %}">Login</a></li>
+        <li><a href="{% url 'credentials:register' %}">Register</a></li>
+    </ul>
+</nav>
+<div class="logout-container">
+    <a class="logout-btn" href="{% url 'credentials:logout' %}">
+        Logout
+    </a>
+</div>
+
+{% block content %}
+
+{% endblock %}
+</body>
+</html>

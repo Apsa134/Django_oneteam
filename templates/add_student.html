@@ -1,47 +1,62 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Student Registration</title>
-</head>
-<body>
 
-    <h2>Student Registration Form</h2>
+{% extends 'base.html' %} 
+{%block title%}Add students{% endblock %}
 
-    <form method="POST" action="{% url 'student:addstudent' %}">
-        {% csrf_token %}
+<div class="container">
 
-        <label>Student Name:</label>
-        <input type="text" name="std_name" required>
-        <br><br>
+    <div class="form-container">
 
-        <label>Phone:</label>
-        <input type="text" name="phone" maxlength="15" required>
-        <br><br>
+        <h1>Student Registration</h1>
 
-        <label>Date of Birth:</label>
-        <input type="date" name="dob" required>
-        <br><br>
+        <form method="POST" action="{% url 'student:addstudent' %}">
 
-        <label>Address:</label>
-        <textarea name="address" rows="4" cols="30" required></textarea>
-        <br><br>
+            {% csrf_token %}
 
-        <label>Course:</label>
-        <select name="course" required>
-            <option value="">Select Course</option>
+            <div class="form-group">
+                <label>Student Name</label>
+                <input type="text" name="std_name" placeholder="Enter student name" required>
+            </div>
 
-            {% for course in all_course %}
-                <option value="{{ course.id }}">
-                    {{ course.course_name }}
-                </option>
-            {% endfor %}
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="text" name="phone" maxlength="15" placeholder="Enter phone number" required>
+            </div>
 
-        </select>
-        <br><br>
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" name="dob" required>
+            </div>
 
-        <button type="submit">Add Student</button>
+            <div class="form-group">
+                <label>Address</label>
+                <textarea name="address" rows="4" placeholder="Enter address" required></textarea>
+            </div>
 
-    </form>
+            <div class="form-group">
+                <label>Course</label>
 
-</body>
-</html>
+                <select name="course" required>
+
+                    <option value="">Select Course</option>
+
+                    {% for course in all_course %}
+
+                        <option value="{{ course.id }}">
+                            {{ course.course_name }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <button type="submit">Add Student</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %} 
