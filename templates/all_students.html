@@ -1,6 +1,10 @@
 {% extends 'base.html' %} 
 {%block title%}All Students{% endblock %}
 
+{% block content %}
+{% for i in messages %}
+ {{i}}
+{% endfor %}
 <div class="container">
 
     <h1>All Students</h1>

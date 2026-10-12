@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from student.models import Course,Students
+from django.contrib import messages
 
 
 # Create your views here.
@@ -30,5 +31,6 @@ def addstudent(request):
        course = request.POST['course']
        course_value = Course.objects.get(id=course)
        Students(std_name=student_name,phone=ph_num,dob=dob,address=stud_address,course=course_value).save()
+       messages.info(request,"New Student added successfully")
        return redirect("student:students")
     return render(request,"add_student.html",{"all_course":courses})

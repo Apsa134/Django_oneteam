@@ -1,62 +1,67 @@
+{% extends 'base.html' %}
 
-{% extends 'base.html' %} 
-{%block title%}Add students{% endblock %}
+{% block title %}
+Add Students
+{% endblock %}
+
+{% block content %}
 
 <div class="container">
 
-    <div class="form-container">
+<div class="form-container">
 
-        <h1>Student Registration</h1>
+    <h1>Student Registration</h1>
 
-        <form method="POST" action="{% url 'student:addstudent' %}">
+    <form method="POST" action="{% url 'student:addstudent' %}">
 
-            {% csrf_token %}
+        {% csrf_token %}
 
-            <div class="form-group">
-                <label>Student Name</label>
-                <input type="text" name="std_name" placeholder="Enter student name" required>
-            </div>
+        <div class="form-group">
+            <label>Student Name</label>
+            <input type="text" name="std_name" placeholder="Enter student name" required>
+        </div>
 
-            <div class="form-group">
-                <label>Phone</label>
-                <input type="text" name="phone" maxlength="15" placeholder="Enter phone number" required>
-            </div>
+        <div class="form-group">
+            <label>Phone</label>
+            <input type="text" name="phone" maxlength="15" placeholder="Enter phone number" required>
+        </div>
 
-            <div class="form-group">
-                <label>Date of Birth</label>
-                <input type="date" name="dob" required>
-            </div>
+        <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date" name="dob" required>
+        </div>
 
-            <div class="form-group">
-                <label>Address</label>
-                <textarea name="address" rows="4" placeholder="Enter address" required></textarea>
-            </div>
+        <div class="form-group">
+            <label>Address</label>
+            <textarea name="address" rows="4" placeholder="Enter address" required></textarea>
+        </div>
 
-            <div class="form-group">
-                <label>Course</label>
+        <div class="form-group">
+            <label>Course</label>
 
-                <select name="course" required>
+            <select name="course" required>
 
-                    <option value="">Select Course</option>
+                <option value="">Select Course</option>
 
-                    {% for course in all_course %}
+                {% for course in all_course %}
 
-                        <option value="{{ course.id }}">
-                            {{ course.course_name }}
-                        </option>
+                    <option value="{{ course.id }}">
+                        {{ course.course_name }}
+                    </option>
 
-                    {% endfor %}
+                {% endfor %}
 
-                </select>
+            </select>
 
-            </div>
+        </div>
 
-            <button type="submit">Add Student</button>
+        <button type="submit">Add Student</button>
 
-        </form>
-
-    </div>
+    </form>
 
 </div>
 
-{% endblock %} 
+
+</div>
+
+{% endblock %}
