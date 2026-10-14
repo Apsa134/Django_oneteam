@@ -16,3 +16,17 @@ class Students(models.Model):
 
 	def __str__(self):
 		return self.std_name
+
+class Trainer(models.Model):
+	full_name = models.CharField(max_length=100)
+	dob = models.DateField()
+	course = models.ForeignKey(Course,on_delete=models.PROTECT)
+	qualification = models.CharField(max_length=30)
+	profile_pic = models.ImageField(
+        upload_to='trainer_profiles/',
+        blank=True,
+        null=True
+    )
+
+	def __str__(self):
+		return self.full_name

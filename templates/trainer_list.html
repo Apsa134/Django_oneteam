@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer List</title>
+</head>
+<body>
+    <h1>Trainer List</h1>
+
+    {% for trainer in trainers %}
+        <div>
+            <h2>Trainer {{ forloop.counter }}</h2>
+
+            <!-- Display profile picture -->
+            {% if trainer.profile_pic %}
+                <img src="{{ trainer.profile_pic.url }}"
+                     alt="Trainer Profile"
+                     width="150">
+            {% else %}
+                <p>No profile picture uploaded.</p>
+            {% endif %}
+
+            <!-- Display all trainer details -->
+            {% for label, value in trainer.details %}
+                <p>
+                    <strong>{{ label|title }}:</strong>
+                    {{ value|default:"Not provided" }}
+                </p>
+            {% endfor %}
+
+            <!-- Edit Trainer button -->
+            <a href="{% url 'student:edit_trainer' trainer.pk %}">
+                <button type="button">Edit Trainer</button>
+            </a>
+            <form method="post"action="{% url 'student:delete_trainer' trainer.pk %}">
+                {% csrf_token %}
+                <input type="submit" value="Delete">
+            </form>
+        </div>
+
+        <hr>
+
+    {% empty %}
+        <p>No trainers available.</p>
+    {% endfor %}
+
+</body>
+</html>
