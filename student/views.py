@@ -3,6 +3,11 @@ from student.models import Course,Students,Trainer
 from django.contrib import messages
 from django.views.generic import CreateView,ListView,UpdateView,DeleteView
 from django.urls import reverse_lazy
+from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
+from .serializers import CourseSerializer, StudentSerializer
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.filters import SearchFilter
+
 # Create your views here.
 def Allstudent(request):
     course = "Python Django"
@@ -67,4 +72,21 @@ class EditTrainer(UpdateView):
 class DeleteTrainer(DeleteView):
     model = Trainer
     success_url = reverse_lazy("student:home")
+
+class CourseList(ListCreateAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ["course_name"]
+
     
+class CourseDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+
+
+class StudentViewSet(ModelViewSet):
+    queryset = Students.objects.all()
+    serializer_class = StudentSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ["std_name","phone","dob","address","course__course_name"]
